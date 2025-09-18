@@ -1,0 +1,35 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id     String  @id @default(uuid()) // PK UUID
+  name   String                     // nome obrigatório
+  number String  @unique            // telefone único
+  planId String?                    // FK opcional para Plan
+  plan   Plan? @relation(fields: [planId], references: [id]) // relação com Plan
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt               
+
+  @@map("clients")                  // nome da tabela no DB
+}
+
+model Plan {
+  id      String   @id @default(uuid()) // PK UUID
+  name    String                        // nome do plano
+  price   Decimal                       // preço do plano
+  clients Client[]  // 1:N -> clientes
+  
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt               
+
+  @@map("plans")                        // nome da tabela no DB
+}
