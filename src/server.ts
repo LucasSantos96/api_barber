@@ -12,16 +12,19 @@ const port = Number(process.env.PORT) || 3333
 
 //importa as rotas
 import { routes } from './routes/ClientRoutes';
+import { planRoutes } from './routes/PlanRoutes';
 
 
 
 
 fastify.register(cors,{
-    origin:"*" // libera qualquer origem (apenas em DEV)
+    // libera qualquer origem (apenas em DEV)
+    origin:"*",
+  methods:["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]// adicione os métodos que vai usar
 })
 
 //registra a saída das rotas
-fastify.register(routes)
+fastify.register(routes, planRoutes)
 
 
 

@@ -14,6 +14,8 @@ class UpdateClienteController{
 
         reply.send(client)
 
+    }catch(err:Error){
+        console.error(err)
     }
 
 }
