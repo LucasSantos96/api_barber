@@ -29,7 +29,9 @@ model Plan {
   clients Client[]  // 1:N -> clientes
   
   created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt               
+  updated_at DateTime? @updatedAt     
 
+  status String?
+  expires_at DateTime?
   @@map("plans")                        // nome da tabela no DB
 }
