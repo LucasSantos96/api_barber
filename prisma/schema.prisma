@@ -15,9 +15,13 @@ model Client {
   number String  @unique            // telefone único
   planId String?                    // FK opcional para Plan
   plan   Plan? @relation(fields: [planId], references: [id]) // relação com Plan
+  
+  status String?
+  expires_at DateTime?      
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt               
+  updated_at DateTime? @updatedAt       
+
 
   @@map("clients")                  // nome da tabela no DB
 }
@@ -31,7 +35,6 @@ model Plan {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt     
 
-  status String?
-  expires_at DateTime?
+  
   @@map("plans")                        // nome da tabela no DB
 }

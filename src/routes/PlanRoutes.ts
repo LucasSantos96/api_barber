@@ -2,7 +2,7 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
 import { CreatePlanController } from "../controllers/CreatePlanController";
 import { ListPlansController } from "../controllers/ListPlansController";
-import { ActivePlanController } from "../controllers/ActivePlanController";
+
 import { request } from "http";
 
 export async function planRoutes(fastify: FastifyInstance) {
@@ -20,7 +20,5 @@ export async function planRoutes(fastify: FastifyInstance) {
     }
   );
 
-  fastify.post("/active-plan", async (request: FastifyRequest, reply: FastifyReply)=>{
-    return new ActivePlanController().handle(request, reply)
-  })    
+     
 }

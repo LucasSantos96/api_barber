@@ -14,6 +14,8 @@ import {ListClientsController} from '../controllers/ListClientsController'
 import { DeleteClientController } from "../controllers/DeleteClientController";
 
 import { UpdateClienteController } from "../controllers/UpdateClientController";
+
+import{ ActiveClientController} from '../controllers/ActiveClientController'
 //--//
 
 
@@ -47,6 +49,9 @@ fastify.patch('/update-client/:id', async(request:FastifyRequest, reply: Fastify
     return new UpdateClienteController().handle(request,reply)
 
 })
+fastify.post("/active-client", async (request: FastifyRequest, reply: FastifyReply)=>{
+    return new ActiveClientController().handle(request, reply)
+  }) 
 
 }
 

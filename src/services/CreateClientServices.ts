@@ -4,11 +4,13 @@ import prismaClient from '../prisma';
 interface CreateClientProps{
     name:string,
     number:string,
-    planId?:string
+    planId?:string,
+    status?:string,
+    expires_at?:string,
 }
 
 class CreateClientServices{
-    async execute({name,number,planId}: CreateClientProps){
+    async execute({name,number,planId,status,expires_at}: CreateClientProps){
 
         if(!name || !number  ){
             throw new Error('Preencha todos os campos!')
@@ -17,7 +19,9 @@ class CreateClientServices{
             data:{
                 name,
                 number,
-                planId: planId || null
+                planId: planId || null,
+                status: "active",
+                expires_at,
             }
         })
 
